@@ -5,25 +5,19 @@
     DemoViewModel = kendo.data.ObservableObject.extend({
 
         showBannerTop: function () {
-            if (window.plugins === undefined) {
-                alert('Plugin not available. Are you running in the simulator?');
-            } else {
+            if (!this.checkSimulator()) {
 	            this.showBanner('top', window.plugins.AdMob.AD_SIZE.BANNER);
             }
         },
 
         showBannerBottom: function () {
-            if (window.plugins === undefined) {
-                alert('Plugin not available. Are you running in the simulator?');
-            } else {
+            if (!this.checkSimulator()) {
 	            this.showBanner('bottom', window.plugins.AdMob.AD_SIZE.BANNER);
             }
         },
 
         showRectangleTop: function () {
-            if (window.plugins === undefined) {
-                alert('Plugin not available. Are you running in the simulator?');
-            } else {
+            if (!this.checkSimulator()) {
 	            this.showBanner('top', window.plugins.AdMob.AD_SIZE.IAB_MRECT);
             }
         },
@@ -68,8 +62,7 @@
         },
 
         showInterstitialView: function () {
-            if (window.plugins === undefined) {
-                alert('Plugin not available. Are you running in the simulator?');
+            if (this.checkSimulator()) {
                 return;
             }
 
@@ -112,12 +105,22 @@
         },
 
         hideBanner: function () {
-            if (window.plugins === undefined) {
-                alert('Plugin not available. Are you running in the simulator?');
-            } else {
+            if (!this.checkSimulator()) {
 	            window.plugins.AdMob.destroyBannerView();
             }
-        }
+        },
+
+        checkSimulator: function() {
+            if (window.navigator.simulator === true) {
+                alert('This plugin is not available in the simulator.');
+                return true;
+            } else if (window.plugins === undefined || window.plugins.AdMob === undefined) {
+                alert('Plugin not found. Maybe you are running in AppBuilder Companion app which currently does not support this plugin.');
+                return true;
+            } else {
+                return false;
+            }
+        }        
     });
 
     app.demoService = {
