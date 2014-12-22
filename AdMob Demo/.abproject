@@ -48,5 +48,8 @@
   "Description": "AdMob Cordova plugin Demo App",
   "DisplayName": "AdMob plugin demo",
   "Author": "Telerik",
-  "Framework": "Cordova"
+  "Framework": "Cordova",
+  "projectVersion": "1",
+  "WP8PublisherID": "{e9bbcac7-a684-4c75-bbdf-e316bc3d0aec}",
+  "WP8ProductID": "{911ec238-24ed-47dc-b783-cb73bae8ab5e}"
 }

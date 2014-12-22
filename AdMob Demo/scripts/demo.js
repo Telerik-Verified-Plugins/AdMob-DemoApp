@@ -1,3 +1,28 @@
+// go to www.admob.com, sign up, create your app (one for each platform) and change the keys below
+var ad_units = {
+  ios : {
+    banner: 'ca-app-pub-9517346003011652/4450962523',
+    interstitial: 'ca-app-pub-9517346003011652/9770622520'
+  },
+  android : {
+    banner: 'ca-app-pub-9517346003011652/8741561327',
+    interstitial: 'ca-app-pub-9517346003011652/2247355722'
+  },
+  wp8 : {
+    banner: 'ca-app-pub-9517346003011652/2695027726',
+    interstitial: 'ca-app-pub-9517346003011652/3724088920'
+  }
+};
+
+var adMobKeys;
+if (/(android)/i.test(navigator.userAgent)) {
+  adMobKeys = ad_units.android;
+} else if (/(iphone|ipad)/i.test(navigator.userAgent)) {
+  adMobKeys = ad_units.ios;
+} else {
+  adMobKeys = ad_units.wp8;
+}
+
 (function (global) {
     var DemoViewModel,
         app = global.app = global.app || {};
@@ -23,25 +48,22 @@
         },
 
         showBanner: function (bannerPosition, bannerType) {
-            // go to www.admob.com, sign up, create your app (one for each platform) and change the keys below
-			var admob_ios_key = 'ca-app-pub-9517346003011652/4450962523';
-            var admob_android_key = 'ca-app-pub-9517346003011652/8741561327';
-            // var admob_wp8_key = 'ca-app-pub-9517346003011652/2695027726'; // future work
-            
-            var adMobKey = (navigator.userAgent.indexOf('Android') >=0) ? admob_android_key : admob_ios_key;
-
             window.plugins.AdMob.createBannerView(
                 // createBannerView params
                 {
-                    'publisherId': adMobKey,
-                    'adSize': bannerType,
-                    'bannerAtTop': bannerPosition == 'top'
-        		},
+                  'publisherId': adMobKeys.banner,
+                  'adSize': bannerType,
+                  'bannerAtTop': bannerPosition == 'top',
+                  'overlap': false, // true doesn't push the webcontent away
+                  'offsetTopBar': true // set to true if you want it below the iOS >= 7 statusbar
+            		},
                 // createBannerView success callback
                 function() {
                   window.plugins.AdMob.requestAd(
                       // requestAd params
-                      {'isTesting':false},
+                      {
+                        'isTesting': false
+                      },
                       // requestAd success callback
                       function(){
                         window.plugins.AdMob.showAd(
@@ -58,45 +80,38 @@
                 },
                 // createBannerView error callback
                 function(){ alert('failed to create banner view'); }
-		    );
+		      );
         },
 
         showInterstitialView: function () {
             if (this.checkSimulator()) {
                 return;
             }
-
-            // go to www.admob.com, sign up, create your app (one for each platform) and change the keys below
-			var admob_ios_key = 'ca-app-pub-9517346003011652/4450962523';
-            var admob_android_key = 'ca-app-pub-9517346003011652/8741561327';
-            // var admob_wp8_key = 'ca-app-pub-9517346003011652/2695027726'; // future work
-            
-            var adMobKey = (navigator.userAgent.indexOf('Android') >=0) ? admob_android_key : admob_ios_key;
-
             window.plugins.AdMob.createInterstitialView(
                 // createInterstitialView params
                 {
-                    'publisherId': adMobKey
-        		},
+                  'interstitialAdId': adMobKeys.interstitial,
+                  'autoShow': true // auto show interstitial ad when loaded
+            		},
                 // createInterstitialView success callback
                 function() {
                   window.plugins.AdMob.requestInterstitialAd (
                       // requestInterstitialAd  params
-                      {'isTesting':false},
+                      {
+                        'isTesting': false
+                      },
                       // requestInterstitialAd  success callback
-                      function(){
-                          /*
-                        window.plugins.AdMob.showAd(
+                      function() {
+                        window.plugins.AdMob.showInterstitialAd (
                             // showAd params
                             true,
                             // showAd success callback
                             function() {console.log('show ok')},
                             // showAd error callback
                             function() { alert('failed to show ad')});
-                            */
                       },
                       // requestInterstitialAd  error callback
-                      function(){ alert('failed to request ad'); }
+                      function(){ console.log('failed to request ad'); }
                   );
                 },
                 // createInterstitialView error callback

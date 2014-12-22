@@ -37,7 +37,7 @@
         </p>
         <p>
             Custom plugins don't work in the simulator and the AppBuilder companion app,
-            so inside Telerik AppBuilder choose Run - Build - iOS/Android - App package.
+          so inside Telerik AppBuilder choose Run - Build - iOS/Android/Windows Phone - App package.
         </p>
     </div>
 
@@ -48,15 +48,17 @@
         data-model="app.demoService.viewModel">
 
         <div class="demo">
-            <h3 class="hassubtitle">Hide ad banner</h3>
-            <div class="subtitle">Hide a banner before showing a new one</div>
-            <button data-role="button" class="button" data-bind="click: hideBanner">Hide banner</button>
-            <!--button data-role="button" class="button" data-bind="click: showInterstitialView">Show interstitial ad</button-->
-
             <h3>Show ad banner</h3>
             <button data-role="button" class="button" data-bind="click: showBannerBottom">Show banner at bottom</button>
             <button data-role="button" class="button" data-bind="click: showBannerTop">Show banner at top</button>
             <button data-role="button" class="button" data-bind="click: showRectangleTop">Show rectangle at top</button>
+
+            <h3 class="hassubtitle">Hide ad banner</h3>
+            <div class="subtitle">Please hide a banner before showing a new one</div>
+            <button data-role="button" class="button" data-bind="click: hideBanner">Hide banner</button>
+
+            <h3>Show interstitial ad</h3>
+            <button data-role="button" class="button" data-bind="click: showInterstitialView">Take over my screen</button>
         </div>
     </div>
 
