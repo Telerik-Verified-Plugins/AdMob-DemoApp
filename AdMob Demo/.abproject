@@ -4,7 +4,7 @@
   "AppIdentifier": "com.telerik.plugindemo.admob",
   "ProjectName": "AdMob Demo",
   "IsRunnable": "true",
-  "FrameworkVersion": "3.7.0",
+  "FrameworkVersion": "3.8.0",
   "AndroidPermissions": [
     "android.permission.CAMERA",
     "android.permission.VIBRATE",
@@ -53,5 +53,6 @@
   "WP8PublisherID": "{e9bbcac7-a684-4c75-bbdf-e316bc3d0aec}",
   "WP8ProductID": "{911ec238-24ed-47dc-b783-cb73bae8ab5e}",
   "WP8WindowsPublisherName": "CN=Telerik",
-  "WP8PackageIdentityName": "1234Telerik.com.telerik.plugindemo.admob"
+  "WP8PackageIdentityName": "1234Telerik.com.telerik.plugindemo.admob",
+  "AndroidVersionCode": "2"
 }
