@@ -23,8 +23,9 @@
     "android.permission.WRITE_EXTERNAL_STORAGE"
   ],
   "CorePlugins": [
+    "com.rjfun.cordova.plugin.admob@2.2.0",
     "cordova-plugin-console",
-    "cordova-plugin-crosswalk-webview@1.2.0",
+    "cordova-plugin-crosswalk-webview@1.4.0.3",
     "cordova-plugin-device",
     "cordova-plugin-dialogs",
     "cordova-plugin-network-information",
